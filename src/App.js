@@ -1,5 +1,6 @@
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
+import Checkout from "./components/checkout/Checkout";
 import{
   BrowserRouter as Router,
   Routes,
@@ -12,6 +13,7 @@ function App() {
       <Header/>
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/checkout" element={<Checkout/>}/>
         </Routes>
     </Router>
   );
