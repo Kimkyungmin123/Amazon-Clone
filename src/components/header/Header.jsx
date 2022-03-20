@@ -3,8 +3,11 @@ import './header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import {Link} from "react-router-dom";
+import { useStateValue } from '../../StateProvider';
 
 function Header(){
+    // data layer 주고받기 (basket)
+    const [{basket},dispatch] = useStateValue();
     return (
         <div className='header'>
             <Link to="/">
@@ -36,7 +39,9 @@ function Header(){
                     <div className='header_optionBasket'>
                         <ShoppingBasketIcon/>
                         <span className='header_basketCount'>
-                            0
+
+                            {/* optional chaining : 값이 오류가 있을때 모든 프로그램이 망가지는 것이 아니라, 애매한값은 undefined로 반환해서 에러 안나게.*/}
+                            {basket?.length}
                         </span>
                     </div>
                 </Link>
