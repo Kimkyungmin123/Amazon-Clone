@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
 import './login.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import { auth } from '../../firebase';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const signIn = e=>{
         // 새로고침 방지
         e.preventDefault();
+        auth
+            // firebase에 이메일, 비번 있나 확인시켜줌
+            .signInWithEmailAndPassword(email,password)
+            .then(auth=>{
+                navigate("/quiz");
+            }).catch(error => alert(error.message))
 
         
     };
 
     const register = e =>{
         e.preventDefault();
+        
+        // firebase에 이메일 비번 생성 
+        auth.createUserWithEmailAndPassword(email, password)
+        .then((auth)=>{
+
+            // 성공적으로 생성됬으면 페이지 옮기기.
+            if(auth){
+                navigate("/quiz");
+            }   
+        }).catch(error => alert(error.message))
+
     };
 
     return (
@@ -51,3 +70,5 @@ function Login() {
 }
 
 export default Login;
+
+// useNavigate :  useNavigate를 통해서 다른페이지로 (행동을 한 이후로 ) 페이지 이동
