@@ -72,3 +72,8 @@
 .header_basketCount{
     margin: 0 10px;    
 }
+
+.homeLogin{
+    text-decoration: none;
+    color: white;
+}

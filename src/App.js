@@ -6,12 +6,17 @@ import{
   Routes,
   Route,
 } from "react-router-dom";
+import Login from "./components/login/Login";
 
 function App() {
   return (
     <Router>
       <Header/>
+      
+        
+      
         <Routes>
+        <Route path="/login" element={<Login/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="/checkout" element={<Checkout/>}/>
         </Routes>

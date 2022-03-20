@@ -9,8 +9,8 @@ export const getBasketTotal = (basket) =>(
 )
 
 const reducer = (state, action) =>{
-    console.log(action);
     
+
     switch (action.type){
     case 'ADD_TO_BASKET' :
         return{
@@ -19,6 +19,8 @@ const reducer = (state, action) =>{
         };
 
         case 'REMOVE_FROM_BASKET' :
+            console.log(state);
+            console.log(action);
             const index = state.basket.findIndex(
                 (basketItem)=>basketItem.id === action.id
             );
@@ -26,6 +28,7 @@ const reducer = (state, action) =>{
             let newBasket = [...state.basket];
 
             if(index >=0){
+                // splice(제거 시작 인덱스, 제거 개수) -> 원본 배열 수정
                 newBasket.splice(index, 1)
             }else{
                 console.warn(
