@@ -1,6 +1,8 @@
 // 초창기의 처음상태 -> 장바구니 처음에는 빈배열
+// app전역에서 user에 대한 정보 주고 받기
 export const initialState = {    
     basket:[ ],
+    user:null,
 };
 
 // getBasketTotal은 selector
@@ -10,7 +12,6 @@ export const getBasketTotal = (basket) =>(
 
 const reducer = (state, action) =>{
     
-
     switch (action.type){
     case 'ADD_TO_BASKET' :
         return{
@@ -42,10 +43,15 @@ const reducer = (state, action) =>{
                 ...state,
                 basket:newBasket,
             }
+
+            case 'SET_USER' :
+                return{
+                    ...state,
+                    user:action.user,
+                }
         default:
             return state;
-
-    }
+        }
 };
 
 // selector : state에서 필요한 데이터를 가져오거나, 계산을 수행해서 원하는 형태의 데이터를 가져오는 역할.

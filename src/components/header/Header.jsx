@@ -4,10 +4,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import {Link} from "react-router-dom";
 import { useStateValue } from '../../StateProvider';
+import { auth } from '../../firebase';
 
 function Header(){
     // data layer 주고받기 (basket)
-    const [{basket},dispatch] = useStateValue();
+    const [{basket,user},dispatch] = useStateValue();
+
+    const handleAuthentication = ()=>{
+        if(user){
+            auth.signOut(); // signOut() : firebase 메소드, 로그아웃.
+        }
+    }
     return (
         <div className='header'>
             <Link to="/">
@@ -22,8 +29,8 @@ function Header(){
             <div className='header_nav'>
                 <div className='header_option'>
                     <span className='header_optionLineOne'>안녕하세요!</span>
-                    <Link to='/login' className='homeLogin'>
-                        <span className='header_optionLineTwo'>로그인하기</span>
+                    <Link to={!user && '/login'} className='homeLogin'>
+                        <spanc onClick={handleAuthentication} className='header_optionLineTwo'>{user ? '로그아웃' : '로그인'}</spanc>
                     </Link>
                 </div>
                 <div className='header_option'>
