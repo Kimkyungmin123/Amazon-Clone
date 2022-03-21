@@ -6,7 +6,7 @@ import './checkout.css';
 
 function Checkout() {
 
-    const [{basket}, dispatch] = useStateValue(); // 장바구니 정보 가지고 오기 위해
+    const [{basket, user}, dispatch] = useStateValue(); // 장바구니 정보 가지고 오기 위해
 
     return (
         <div className='checkout'>
@@ -14,7 +14,7 @@ function Checkout() {
                 <img className='checkout_adImg'src="https://m.media-amazon.com/images/I/51DNXJGrnrL._SX1500_.jpg" alt="" />
 
                 <div className='checkout_item'>
-                    <h2>장바구니 입니다.</h2>
+                    <h2>{user?.email}의 장바구니 입니다.</h2>
 
                     {basket.map(item => (
                         <CheckoutProduct 

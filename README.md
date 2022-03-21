@@ -19,3 +19,5 @@
 ## 👀
 
 <!-- <img src="img/movie.gif"> -->
+
+Hosting URL: https://clone-e1f74.web.app
